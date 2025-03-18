@@ -1,4 +1,4 @@
-# CheckList de Implantação 
+# CheckList de Implantação
 
 import streamlit as st
 import pandas as pd
@@ -20,20 +20,22 @@ def load_data():
     else:
         df = pd.DataFrame({
             "Tópico": [
-                "Pré-Instalação", "Pré-Instalação", "Pré-Instalação", "Pré-Instalação", "Pré-Instalação",
-                "Instalação", "Instalação", "Instalação", "Instalação", "Instalação",
+                "Pré-Instalação", "Pré-Instalação", "Pré-Instalação", "Pré-Instalação", "Pré-Instalação", "Pré-Instalação", "Pré-Instalação",
+                "Instalação", "Instalação", "Instalação", "Instalação", "Instalação", "Instalação", "Instalação", "Instalação",
                 "Pós-Instalação", "Pós-Instalação", "Pós-Instalação", "Pós-Instalação", "Pós-Instalação"
             ],
             "Tarefas": [
                 "Coletar no mínimo 3 lacres de cada bomba", "Validar a estrutura de Tanques", "Deixar todos os caixas importados no LBC",
-                "Deixar todas as NFs lançadas no LBC", "Conferir Nome dos colaboradores no Cofre",
+                "Deixar todas as NFs lançadas no LBC", "Conferir Nome dos colaboradores no Cofre", "Validar preço de Venda Dos Combustíveis", "Sangria e Coleta Antes do Fechamento",
+
                 "Realizar corte do carro forte no LBC", "Conferir saldo LBC VS Cofre", "Coletar Medição dos tanques",
-                "Coletar Encerrantes digital de todos os bicos", "Importar último caixa no LBC",
+                "Coletar Encerrantes digital de todos os bicos", "Importar último caixa no LBC", "Validar Medição de Tanques (LMC)", "Validar Preço de Custo dos Combustíveis no LBC",
+
                 "Abrir o primeiro caixa com o usuário do gerente", "Conferir CNPJ nas POS",
                 "Baixa de aferição em todos os tipos de combustíveis", "Testar baixa na POS",
-                "Baixar o restante das Aferições"
+                "Baixar o restante das Aferições",
             ],
-            "Concluído": ["FALSE"] * 15
+            "Concluído": ["FALSE"] * 19
         })
         df.to_excel(FILE_PATH, index=False)
         return df
@@ -56,6 +58,9 @@ def get_status_index(status):
 
 # Carregar dados
 df = load_data()
+
+if df is not None:
+    st.write(df)  # Exibe o DataFrame no Streamlit
 
 # Customização com HTML e CSS
 st.markdown(
