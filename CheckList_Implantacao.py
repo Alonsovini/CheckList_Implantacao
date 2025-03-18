@@ -52,37 +52,70 @@ def reset_data(df):
 
 # Função para obter o índice do status
 def get_status_index(status):
-    options = ["TRUE", "FALSE"]
+    options = ["TRUE", "FALSE", "NÃO SE APLICA"]  # Adicionada a opção "NÃO SE APLICA"
     status = str(status).strip() if pd.notna(status) else "FALSE"
-    return options.index(status) if status in options else 1
+    return options.index(status) if status in options else 1  # Define "FALSE" como padrão
 
 # Carregar dados
 df = load_data()
 
-if df is not None:
-    st.write(df)  # Exibe o DataFrame no Streamlit
+# if df is not None:
+#    st.write(df)  # Exibe o DataFrame no Streamlit
 
 # Customização com HTML e CSS
 st.markdown(
     """
     <style>
+    /* Aplicar gradiente ao fundo da página */
+    .stApp {
+        background: linear-gradient(135deg, #22e6b9, #7525b9);
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    /* Centralizar o título */
     .centered-title {
         text-align: center;
-        font-size: 48px; !important;  /* Aumentei o tamanho da fonte */
+        font-size: 48px;
         font-weight: bold;
-        color: #86d569;
+        color: black;
         margin-bottom: 30px;
     }
+
+    /* Estilo das tarefas */
     .task-font {
-        font-size: 29px;
+        font-size: 40px;
         font-weight: bold;
         margin-top: 20px;
+        color: black;
     }
-    .true-status {
-        color: green;
+    
+        /* Reduzir espaçamento entre a tarefa e o selectbox */
+    .stSelectbox {
+        margin-top: -40px !important;
     }
-    .false-status {
-        color: red;
+
+    /* Estilo dos botões */
+    .stButton button {
+        background-color: #4F8BF9;
+        color: black;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    /* Estilo dos selectboxes */
+    .stSelectbox select {
+        background-color: black;
+        color: black;
+        border-radius: 5px;
+        padding: 5px;
+    }
+
+    /* Corrigir cor de fundo dos containers */
+    .stContainer {
+        background-color: transparent !important;
     }
     </style>
     """,
@@ -101,19 +134,20 @@ for topico in topicos_ordenados:
         st.subheader(topico)
         topico_df = df[df["Tópico"].astype(str).fillna("") == topico]
         for index, row in topico_df.iterrows():
-            status_options = ["TRUE", "FALSE"]
+            status_options = ["TRUE", "FALSE", "NÃO SE APLICA"]  # Adicionada a opção "NÃO SE APLICA"
             status_index = get_status_index(row["Concluído"])
 
             # Exibe a tarefa com fonte maior
             st.write(f"<p class='task-font'>{row['Tarefas']}</p>", unsafe_allow_html=True)
 
-            # Selectbox para escolher TRUE ou FALSE
+            # Selectbox para escolher TRUE ou FALSE ou não se aplica
             new_status = st.selectbox(
-                "Status",
+                " ",
                 status_options,
                 index=status_index,
                 key=f"{row['Tópico']}_{index}",
-                format_func=lambda x: f"✅ {x}" if x == "TRUE" else f"❌ {x}",
+                format_func=lambda x: f"✅ {x}" if x == "TRUE" else f"❌ {x}" if x == "FALSE" else f"➖ {x}",
+                # Adicionado ícone para "NÃO SE APLICA"
             )
             df.at[index, "Concluído"] = new_status
 
