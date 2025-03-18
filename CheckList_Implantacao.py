@@ -5,7 +5,7 @@ import pandas as pd
 import os
 
 # Nome do arquivo Excel
-FILE_PATH = "Checklist.xlsx"
+FILE_PATH = "checklist.xlsx"
 
 # Função para carregar os dados
 def load_data():
