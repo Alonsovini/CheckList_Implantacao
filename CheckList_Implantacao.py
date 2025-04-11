@@ -20,16 +20,15 @@ def load_initial_data():
         "Coletar Encerrantes digital de todos os bicos", "Importar último caixa no LBC",
         "Validar Medição de Tanques (LMC)", "Validar Preço de Custo dos Combustíveis no LBC",
         "Abrir o primeiro caixa com o usuário do gerente", "Validar (hexa), fazer aferição em todos os bicos",
-        "Conferir CNPJ nas POS", "Testar meios de pagamento (Pix,Credito, Debito, Dinheiro e B2B)",
+        "Conferir CNPJ nas POS", "Testar meios de pagamento (Pix,Credito, Debito, Dinheiro e B2B)", "Testar baixa na POS" ,
         "Validar se está pedindo codigo de vendedor somente em produtos comissionados", "Em Loja, Fazer teste com produtos que mais vendem",
         "Em Automotivo, Fazer teste com Oleo mais vendido", "Conferir saldo de estoque no PDV (Após ok da Auditoria)",
         "Fazer corte de caixa após 30 minutos de testes (Conferir Encerrantes)", "Postos de Rodovia, Emitir danfe no PDV",
-        "Baixa de aferição em todos os tipos de combustíveis", "Testar baixa na POS",
-        "Baixar o restante das Aferições"
+        "Baixa de aferição em todos os tipos de combustíveis", "Baixar o restante das Aferições", "Fazer teste no Cofre"
     ]
 
     # Lista de tópicos (mesmo número de itens que a lista de tarefas)
-    topicos = ["Pré-Instalação"] * 7 + ["Instalação"] * 7 + ["Pós-Instalação"] * 13
+    topicos = ["Pré-Instalação"] * 7 + ["Instalação"] * 7 + ["Pós-Instalação"] * 14
 
     # Lista de status (mesmo número de itens que a lista de tarefas)
     concluido = ["FALSE"] * len(tarefas)
